@@ -1,0 +1,50 @@
+{% extends 'user_base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+<div class="container">
+  <form method="get" action="{% url 'filter_dashboard' %}" class="d-flex align-items-center">
+
+    <label for="source_name" class="form-label form-label-sm me-2">Source Name:</label>
+    <input type="text" id="source_name" name="source_name" class="form-control form-control-sm me-3">
+
+    <label for="source_category" class="form-label form-label-sm me-2">Source Category:</label>
+    <input type="text" id="source_category" name="source_category" class="form-control form-control-sm me-3">
+
+    <label for="article_language" class="form-label form-label-sm me-2">Article Language:</label>
+    <input type="text" id="article_language" name="article_language" class="form-control form-control-sm me-3">
+
+    <button type="submit" name="refresh" value="true" class="btn btn-primary btn-sm">Search</button>
+  </form>
+</div>
+
+
+<h2 class="text-center">Top News</h2>
+
+    <div class="container" id="flex">
+        <div class="row gy-2 my-2 float-center" >
+            {% for i in articles %}
+
+           <div class="col-xxl-2 col-md-4 col-sm-6">
+
+                <div class="card mb-2 mt-2" style="width: 23rem;">
+                    <img src="{{i.urlToImage}}" class="card-img-top" alt="Image Not Found">
+                    <div class="card-body">
+                        <p class="card-text">{{i.author}}</p>
+                        <h5 class="card-title">{{i.title}}</h5>
+                        <p class="card-title">{{i.source.name}} </p>
+                        <p class="card-text">{{i.description}}</p>
+                        <hr>
+                        <small>PublishedAt:{{i.publishedAt}}</small>
+                        <a href="{{i.url}}" target="_blank" class="btn btn-warning m-1">Readmore.</a>
+                    </div>
+                </div>
+
+           </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}

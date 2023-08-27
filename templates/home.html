@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block css %}
+<link href="{% static 'css/signup.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block content %}
+
+<h2 class="text-center">Top News</h2>
+    <div class="container" id="flex">
+        <div class="row gy-2 my-2 float-center" >
+            {% for i in top_headlines.articles %}
+
+           <div class="col-xxl-2 col-md-4 col-sm-6">
+
+                <div class="card mb-2 mt-2" style="width: 23rem;">
+                    <img src="{{i.urlToImage}}" class="card-img-top" alt="Image Not Found">
+                    <div class="card-body">
+                        <p class="card-text">{{i.author}}</p>
+                        <h5 class="card-title">{{i.title}}</h5>
+                        <p class="card-title">{{i.source.name}} </p>
+                        <p class="card-text">{{i.description}}</p>
+                        <hr>
+                        <small>PublishedAt:{{i.publishedAt}}</small>
+                        <a href="{{i.url}}" target="_blank" class="btn btn-warning m-1">Readmore.</a>
+                    </div>
+                </div>
+
+           </div>
+
+            {% endfor %}
+
+
+
+        </div>
+    </div>
+
+{% endblock %}
